@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block head_title %}Edit Profile{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="text-center mb-4">
+        <div class="card border-0 p-4 d-inline-block bg-light" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h2 class="m-0 text-primary">My Profile Page</h2>
+            {% if request.user.account.is_editor %}
+            <h1>Editor Version</h1>
+            {% elif request.user.is_authenticated %}
+            <h1>Login User</h1>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'edit_profile' %}" class="btn btn-success btn-lg mx-2">Update Profile</a>
+        <a href="{% url 'pass_change' %}" class="btn btn-success btn-lg mx-2">Change Password</a>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+ 
+ 
+    

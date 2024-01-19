@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmation - Samachar Darpan Times</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            color: #333333; /* Text color */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333333; /* Header text color */
+        }
+
+        .content {
+            color: #333333; /* Content text color */
+        }
+
+        .confirmation-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            background-color: #444444; /* Button background color */
+            color: #ffffff; /* Button text color */
+            padding: 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #555555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Samachar Darpan Times - Editor Approval</h1>
+        </div>
+
+        <div class="content">
+            <p>Hello {{ user.first_name }} {{ user.last_name }},</p>
+            <p>Congratulations! Your account has been approved as an editor for our online news portal.</p>
+            <p>As an editor, you now have the ability to:</p>
+            <ul>
+                <li>Edit existing news articles.</li>
+                <li>Change content in news articles.</li>
+                <li>Add new news articles to our platform.</li>
+            </ul>
+            <p>We trust in your ability to contribute to the quality and accuracy of our news content.</p>
+            <p>Thank you for joining our team of editors. Your dedication is greatly appreciated.</p>
+        </div>
+
+        <div class="footer">
+            <p>If you didn't register on Samachar Darpan Times, please ignore this email.</p>
+            <p>© {% now "Y" %} Samachar Darpan Times</p>
+            <strong>All rights reserved</strong>
+            <br>
+            <strong style="color: lightseagreen;">Author: Ayman Ilias</strong>
+        </div>
+    </div>
+
+</body>
+</html>
