@@ -32,7 +32,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://newspaper.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://newspaper-5an4.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
