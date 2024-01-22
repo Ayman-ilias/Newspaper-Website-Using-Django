@@ -8,9 +8,9 @@ class UserNewsAccount(models.Model):
     gender = models.CharField(max_length=10, choices=GENDER_TYPE)
     is_editor = models.BooleanField(default=False)
     
-    def __str__(self):
-        editor_status = "Editor" if self.is_editor else "Viewer"
-        return f"{self.user.email} - {editor_status}"
+    # def __str__(self):
+    #     editor_status = "Editor" if self.is_editor else "Viewer"
+    #     return f"{self.user.email} - {editor_status}"
     
 class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

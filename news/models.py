@@ -19,8 +19,7 @@ class Category(models.Model):
         return self.name
 
 
-    def __str__(self):
-        return self.name
+    
 
 class News(models.Model):
     title = models.CharField(max_length=100)
@@ -31,7 +30,8 @@ class News(models.Model):
 
     date = models.DateTimeField(auto_now_add=True, blank = True, null = True)
     
-
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):

@@ -20,7 +20,7 @@ class UserNewsAccountAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         obj.save()
-        send_email(obj.user,"Loan Approval", "editor_email.html")
+        send_email(obj.user,"Editor Approval", "editor_email.html")
         super().save_model(request, obj, form, change)
 
 admin.site.register(UserNewsAccount, UserNewsAccountAdmin)

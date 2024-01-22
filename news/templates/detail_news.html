@@ -1,17 +1,24 @@
 {% extends 'base.html' %}
 {% block head_title %}{{ news.title }}{% endblock %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row">
+<div class="container mt-4 d-flex">
+    <div class="row ">
         
         <div class="col-md-12">
-            <div class="card m-2">
-                <div class="card-body" style="background-color: rgb(216, 220, 220);">
+            <div class="card m-2" style="border: none;">
+                <div class="card-body" style="background-color: rgb(255, 255, 255);">
                     <img class="img-fluid mx-auto d-block" src="{{ news.image.url }}" alt="">
-                    <h1 class="card-title">{{ news.title }}
-                        {% if avg_rating %}
+                    <h1 class="card-title">{{ news.title }}</h1>
+                    <p class="card-text">{{ news.date }}</p>
+                    <p><strong class="card-title">Reporter : {{ news.writter }}</strong></p>
+
+                    <p class="card-text">   {{ news.content }}</p>
+                    <div class="d-flex">
+                        <strong>Ratings : 
+                            {% if avg_rating %}
     <!-- <p>Average rating: {{ avg_rating }}</p> -->
     {% if avg_rating|default:0 >= 1 and avg_rating|default:0 <= 1.5 %}
     <span>⭐</span>
@@ -39,36 +46,15 @@
 <span>⭐⭐⭐⭐⭐</span>
 {% endif %}
 {% else %}
-    <p>No ratings yet.</p>
+    <p>No ratings yet...</p>
 {% endif %}
-                    </h1>
-                    <p class="card-text">{{ news.date }}</p>
-                    <p><strong class="card-title">Reporter : {{ news.writter }}</strong></p>
-
-                    <p class="card-text">   {{ news.content }}</p>
+                        </strong>
+                    </div>
                     
                     
-<br>
-<strong>Related Article</strong>
-<br>
 
-{% if related_articles %}
-    
-{% for related_article in related_articles %}
 
-                
-            
-                    <a href="{% url 'detail_news' related_article.id %}" style="text-decoration: none; color: brown;">
-                        {{ related_article.title }}
-                    </a>
-                    <br>
-                </strong>
-               
-          
-{% endfor %}
-{% else %}
-<p>No related articles</p>
-{% endif %}
+
 <strong>Categories:</strong>
 {% for category in news.category.all %}
     <button class="btn btn-danger btn-sm m-2" disabled>{{ category }}</button>
@@ -76,6 +62,39 @@
                 </div>
             </div>
         </div>
+        
+    </div>
+    {% if related_articles %}
+    <div>
+        <div class="text-center">
+            <strong>
+                Related News______
+            </strong> 
+        </div> 
+          <br>
+       
+  
+{% for related_article in related_articles %}
+
+                
+<div class="card" style="width: 18rem;border-radius: 30px;">
+    <img class="card-img-top" src="{{ related_article.image.url }}" alt=" img-fluid">
+
+    <div class="card-body">
+        <strong>
+            <a href="{% url 'detail_news' related_article.id %}" style="text-decoration: none; color: #444444">
+                {{ related_article.title }}...<strong style="color: brown;">Read more</strong>
+            </a>
+           </strong>
+    </div>
+</div>
+<br>
+
+                   
+        
+{% endfor %}
+
+{% endif %}
     </div>
 </div>
 <div class="container mt-4">

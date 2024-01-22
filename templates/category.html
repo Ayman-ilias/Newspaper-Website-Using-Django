@@ -1,9 +1,25 @@
 {% extends 'base.html' %}
-{% block head_title %}Category: {{ title }}{% endblock %}
+{% block head_title %}{{ title }}{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <h2 class="text-center mb-4">Explore Posts in {{ title }}</h2>
+    <!-- <div class="text-center"> -->
+        <!-- <div class="border p-3 d-inline-block mb-3" style="background-color: #444444; color: #ffffff; border-radius: 10px;">
+            <h2 class="m-0">Explore News Based On Category</h2>
+        </div> -->
+    <!-- </div> -->
+    <div class="text-center" style="background-color: #f0f0f0; padding: 10px;border-radius: 10px;margin-top: 20px;">
+        
+        {% for cat in category %}
+        <a href="{% url 'category' cat.slug %}" class="btn btn-light btn-sm" style="color: black;" target="_blank">{{ cat.name }}</a>
+    {% endfor %}
+    </div>
+    <br>
+    <!-- <h4 class="text-light text-center mt-4">{{ data | length }} Books Found</h4> -->
+</div>
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Explore News in {{ title }}</h2>
 </div>
 
 <div class="container mt-4 mb-5">
@@ -14,7 +30,10 @@
                     <img src="{{ post.image.url }}" class="card-img-top img-fluid" style="max-height: 250px; object-fit: cover; border-radius: 15px 15px 0 0;" alt="Post Image">
                     <div class="card-body" style="background-color: white;">
                         <h5 class="card-title"><a href="{% url 'detail_news' post.id %}" class="text-decoration-none text-dark">{{ post.title }}</a></h5>
-                        <strong>Writer: {{ post.writter }}</strong>
+                        <strong style="display: inline-block; text-decoration: underline; margin-bottom: 10px;">Writer: {{ post.writter }}
+                           
+                        </strong>
+                
                         <br>
                         
                         <p class="card-text">{{ post.content|truncatewords:150 }}

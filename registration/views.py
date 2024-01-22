@@ -161,21 +161,10 @@ def test(request):
     return render(request,'register.html')
 
 
-from django.contrib.auth import authenticate, login
 
 
-        
-from django.contrib.auth.models import User
-from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMessage, send_mail
-from django.template.loader import render_to_string
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
-from django.shortcuts import render, redirect
-from django.conf import settings
-from django.contrib import messages
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.contrib.auth import login
+
+
 
 
 def register(request):
@@ -187,7 +176,7 @@ def register(request):
             user.save()
             
 
-            # Send email confirmation link
+            
             current_site = get_current_site(request)
             domain = current_site.domain
             uid = urlsafe_base64_encode(force_bytes(user.pk))
@@ -196,7 +185,7 @@ def register(request):
 
             send_reg_email(user, subject, domain, uid, token, 'registration_email.html')
             messages.success(request, 'Registered Successfully ツ Please check your email to confirm your email address.')
-            return redirect('user_registration')  # Adjust the redirect as needed
+            return redirect('user_registration')  
 
     else:
         register_form = forms.RegistrationForm()
@@ -215,7 +204,7 @@ def activate(request,uidb64,token):
     if user is not None and generate_token.check_token(user,token):
         user.is_active = True
 
-        # user.profile.signup_confirmation = True
+       
         user.save()
         login(request,user)
         messages.success(request, "Your Account has been activated!!....Please Login Now!!")

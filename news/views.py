@@ -48,8 +48,8 @@ def delete_post(request, id):
     if request.user.account.is_editor:
         if request.method == 'POST':
             post.delete()
-            messages.success(request, 'Post deleted successfully.')
-            return redirect('profile')
+            messages.success(request, 'News deleted successfully.')
+            return redirect('home')
         else:
             return render(request, 'delete.html', {'post': post})
     else:
@@ -88,7 +88,7 @@ def add_post(request):
                 return redirect('home')
             else:
                 messages.error(request, 'Invalid form submission.')
-                print(form.errors)  # Add this line for debugging
+                print(form.errors)
         else:
             form = PostForm()
         
@@ -113,8 +113,8 @@ class DetailPostView(DetailView):
                 new_comment.post = news
                 new_comment.user = request.user
                 new_comment.save()
-                messages.success(request, 'Thank you for your Review')
-                send_email(request.user, "Review Ratting", "ratting_email.html")
+                messages.success(request, 'Thank you for your Rating')
+                send_email(request.user, "Review Rating", "ratting_email.html")
             else:
                 messages.error(request, 'Invalid Information')
         else:
@@ -128,7 +128,7 @@ class DetailPostView(DetailView):
         comments = news.comments.all()
         comment_form = CommentForm()
 
-        # Calculate the average rating
+    
         ratings = [comment.rating for comment in comments]
         if ratings:
             avg_rating = round(sum(ratings) / len(ratings), 2)
