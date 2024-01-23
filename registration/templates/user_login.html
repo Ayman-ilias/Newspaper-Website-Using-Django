@@ -1,23 +1,36 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block head_title %}Registration{% endblock %}
 
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="container mt-5 mb-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <form method="post" class="card p-4">
-        {% csrf_token %}
-        <h2 class="text-center mb-4">Log In Page</h2>
+<div class="container mt-5 mb-5  card p-4 shadow-lg" style="background-color: white; border-radius: 10px;">
+  <h2 class="text-center mb-4" style="color: #343a40; font-size: 28px; font-weight: bold;">Sign in to your Account</h2>
+
+  <div class="row">
+   
+    <div class="col-md-7" style="margin: auto;">
+      <!-- Form column -->
+      <div  >
+
+          <form method="post" >
+            {% csrf_token %}
+            
+            {{ form | crispy }}
+              
+            <div class="text-center mt-4">
+              <button type="submit" class="btn" style="background-color: #6C63FF;">Submit</button>
+              <a href="{% url 'user_registration'%}" class="btn" style="background-color: #343a40; color: lightskyblue;">Don't Have a Account?Click here to Register</a>
+            </div>
+            
+          </form>
         
-        {{ form | crispy }}
-          
-        
-        <div class="text-center mt-4">
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <a href="{% url 'user_registration'%}" class="btn btn-warning">Don't Have a Account?Click here to Register</a>
-        </div>
-      </form>
+      </div>
+    </div>
+    <div class="col-md-5 mb-4 " style="margin-top: 30px;" >
+      <!-- Image column -->
+      <img src="{% static 'log.png' %}" alt="Registration Image" class="img-fluid">
     </div>
   </div>
 </div>

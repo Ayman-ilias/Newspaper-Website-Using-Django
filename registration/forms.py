@@ -12,12 +12,17 @@ class RegistrationForm(UserCreationForm):
     city = forms.CharField(max_length= 100)
     mobile_number = forms.DecimalField(max_digits=12, decimal_places=2)
     
+    
 
     class Meta:
         model = User
         fields = ['username' ,'first_name' , 'last_name','email', 'password1','password2', 'gender', 'birth_date','mobile_number','city','country']
     
+    def __init__(self, *args, **kwargs):
+        super(RegistrationForm, self).__init__(*args, **kwargs)
 
+        for fieldname in ['username', 'password1', 'password2']:
+            self.fields[fieldname].help_text = None
 
     def save(self, commit=True):
         our_user = super().save(commit=False)
@@ -56,3 +61,9 @@ class ChangeuserForm(UserChangeForm):
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'gender', 'birth_date', 'mobile_number', 'city', 'country']
         exclude = ['password']
+
+    def __init__(self, *args, **kwargs):
+        super(ChangeuserForm, self).__init__(*args, **kwargs)
+
+        for fieldname in ['username']:
+            self.fields[fieldname].help_text = None

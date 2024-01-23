@@ -11,7 +11,7 @@
             <div class="card m-2" style="border: none;">
                 <div class="card-body" style="background-color: rgb(255, 255, 255);">
                     <img class="img-fluid mx-auto d-block" src="{{ news.image.url }}" alt="">
-                    <h1 class="card-title">{{ news.title }}</h1>
+                    <strong><h1 class="card-title">{{ news.title }}</h1></strong>
                     <p class="card-text">{{ news.date }}</p>
                     <p><strong class="card-title">Reporter : {{ news.writter }}</strong></p>
 
@@ -68,7 +68,7 @@
     <div>
         <div class="text-center">
             <strong>
-                Related News______
+                ______Related News______
             </strong> 
         </div> 
           <br>
@@ -98,7 +98,7 @@
     </div>
 </div>
 <div class="container mt-4">
-    <h3 class="text-center border">⭐⭐⭐⭐⭐Reviews⭐⭐⭐⭐⭐</h3>
+    <h3 class="text-center">⭐⭐Reviews⭐⭐</h3>
 
     {% for comment in comments %}
         <div class="row justify-content-center">
@@ -140,18 +140,23 @@
 
 {% if request.user.is_authenticated %}
 
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="card" style="width: 50%;">
-            <div class="card-body">
-                <h1 class="card-title text-center mb-4">Please Add Your Review</h1>
-                <form method="post">
-                    {% csrf_token %}
-                    {{ comment_form | crispy }}
-                    <button type="submit" class="btn btn-warning d-block mx-auto">Send</button>
-                </form>
-            </div>
+
+<div class="container mt-5 mb-5 border border-4 border-secondary rounded p-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="card-title text-center mb-4">Please Add Your Review</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ comment_form | crispy }}
+                <button type="submit" class="btn btn-primary btn-block">Send</button>
+            </form>
+        </div>
+        <div class="col-md-4" style="margin: auto;">
+            <img src="{% static 'rating.png' %}" alt="Rating Image" class="img-fluid">
         </div>
     </div>
+</div>
+
 {% else %}
 <div class="text-center mt-5">
     <p class="lead">You need to be logged in to give a Rating</p>
